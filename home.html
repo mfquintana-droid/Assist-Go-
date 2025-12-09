@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>AssitsGo - Inicio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ============================
+       MODO CLARO (DEFAULT)
+       ============================ */
+    body {
+      background-color: #f8fafc; /* gris claro */
+      color: #0f172a; /* azul oscuro */
+    }
+  
+    header,
+    nav {
+      background-color: #ffffff;
+      border-color: #e2e8f0;
+    }
+  
+    .accent-green {
+      color: #059669;
+    }
+  
+  
+    /* ============================
+       MODO OSCURO (DARK MODE)
+       activado con .dark-mode
+       ============================ */
+    .dark-mode {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+    }
+  
+    .dark-mode header,
+    .dark-mode nav {
+      background-color: #0c0f1a !important;
+      border-color: #334155 !important;
+    }
+  
+    .dark-mode .accent-green {
+      color: #22c55e !important;
+    }
+  
+    .dark-mode .card,
+    .dark-mode .modal-card {
+      background-color: #0f172a !important;
+      border-color: #334155 !important;
+      color: #ffffff !important;
+    }
+  
+    .dark-mode input {
+      background-color: #1e293b !important;
+      border-color: #475569 !important;
+      color: #fff !important;
+    }
+  
+    .dark-mode button {
+      color: white !important;
+    }
+
+    /* Accesos rápidos (soporte extra para dark mode) */
+    .dark-mode .quick-action-btn {
+      background-color: #020617 !important;
+      border-color: #334155 !important;
+    }
+
+    .dark-mode .quick-action-btn:hover {
+      background-color: #0f172a !important;
+      border-color: #22c55e !important;
+    }
+
+    /* Modal help (ya usa .modal-card pero reforzamos fondo) */
+    .dark-mode #help-modal-panel {
+      background-color: #0f172a !important;
+      color: #ffffff !important;
+    }
+
+    .quick-action-selected {
+      border-color: #16a34a !important;
+      background-color: #ecfdf5 !important;
+    }
+
+    /* ===== MENÚ LATERAL EN MODO OSCURO ===== */
+    .dark-mode #side-menu {
+      background-color: #020617 !important; /* azul casi negro */
+      color: #e5e7eb !important;            /* texto gris claro */
+    }
+
+    .dark-mode #side-menu .border-b {
+      border-color: #334155 !important;
+    }
+
+    .dark-mode #side-menu a,
+    .dark-mode #side-menu button {
+      color: #e5e7eb !important;            /* enlaces y botones claros */
+    }
+
+    .dark-mode #side-menu a:hover,
+    .dark-mode #side-menu button:hover {
+      color: #22c55e !important;            /* hover verde accesible */
+    }
+
+    .dark-mode #side-menu svg {
+      color: #e5e7eb !important;            /* iconos en claro */
+    }
+
+    .dark-mode #side-menu .text-red-600,
+    .dark-mode #side-menu .text-red-600 span {
+      color: #fca5a5 !important;            /* Cerrar sesión más visible */
+    }
+
+  </style>
+  
+</head>
+<body class="min-h-screen bg-gray-50 text-black">
+
+  <!-- Sprite SVG -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="icon-home" viewBox="0 0 24 24">
+      <path d="M12 3 3 10h2v9h5v-6h4v6h5v-9h2z" />
+    </symbol>
+    <symbol id="icon-map" viewBox="0 0 24 24">
+      <path d="M9 3 4 5v16l5-2 6 2 5-2V3l-5 2-6-2zm0 2.47 6 2v13.06l-6-2.01V5.47zm-2 .06v13.06l-2 1V6.53l2-1zm12 0v13.06l-2 1V6.53l2-1z" />
+    </symbol>
+    <symbol id="icon-history" viewBox="0 0 24 24">
+      <path d="M13 3a9 9 0 1 0 8.94 8H20A7 7 0 1 1 13 5V3zm-1 4v6h5v-2h-3V7h-2z" />
+    </symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24">
+      <path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.14 7.14 0 0 0-1.63-.94L14.4 2.5a.5.5 0 0 0-.49-.5h-3.82a.5.5 0 0 0-.49.5l-.36 2.82a7.14 7.14 0 0 0-1.63.94l-2.39-.96a.5.5 0 0 0-.61.22L2.7 8.86a.5.5 0 0 0 .12.64l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94L2.82 14.54a.5.5 0 0 0-.12.64l1.92 3.32c.13.22.39.31.61.22l2.39-.96c.5.38 1.05.7 1.63.94l.36 2.82c.03.25.24.44.49.44h3.82c.25 0 .46-.19.49-.44l.36-2.82c.58-.24 1.13-.56 1.63-.94l2.39.96c.23.09.48 0 .61-.22l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+    </symbol>
+    <symbol id="icon-alert" viewBox="0 0 24 24">
+      <path d="M1 21h22L12 2 1 21zm12-3h-2v2h2v-2zm0-6h-2v4h2v-4z" />
+    </symbol>
+
+    <!-- NUEVOS ICONOS PARA ACCESOS RÁPIDOS Y AYUDA -->
+    <symbol id="icon-wheelchair" viewBox="0 0 24 24">
+      <circle cx="11" cy="6" r="2" />
+      <path d="M10 8v3l2 2h3v2h-3.5l-2.5-2.5-1.5 1 2.2 2.2A4 4 0 1 0 8 11h-2a6 6 0 1 1 6 6" />
+    </symbol>
+    <symbol id="icon-truck" viewBox="0 0 24 24">
+      <path d="M3 6h11v9H3z" />
+      <path d="M14 9h4l3 3v3h-7z" />
+      <circle cx="7" cy="18" r="2" />
+      <circle cx="17" cy="18" r="2" />
+    </symbol>
+    <symbol id="icon-hand" viewBox="0 0 24 24">
+      <path d="M7 11V5a1 1 0 0 1 2 0v4" />
+      <path d="M10 11V3a1 1 0 0 1 2 0v8" />
+      <path d="M13 11V4a1 1 0 0 1 2 0v7" />
+      <path d="M16 11.5V6a1 1 0 0 1 2 0v8c0 3-2 5-5 5H9l-2-6" />
+    </symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24">
+      <circle cx="9" cy="8" r="3" />
+      <circle cx="17" cy="9" r="2.5" />
+      <path d="M4 18c0-2.2 2.2-4 5-4s5 1.8 5 4v1H4z" />
+      <path d="M14.5 17c.4-.3.9-.5 1.5-.5 1.7 0 3 1.2 3 2.5V20h-4.5z" />
+    </symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24">
+      <path d="M5 4h7a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2z" />
+      <path d="M12 4h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2h-7" />
+    </symbol>
+    <symbol id="icon-support" viewBox="0 0 24 24">
+      <circle cx="12" cy="7" r="3" />
+      <path d="M6 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1" />
+      <path d="M4 9h2v4H4zM18 9h2v4h-2z" />
+    </symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24">
+      <path d="M9 4h3a2 2 0 0 1 2 2v3h-2V6H9v12h3v-3h2v3a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+      <path d="M14 12h-3v-2h3V7l5 5-5 5v-3z" />
+    </symbol>
+  </svg>
+
+  <!-- Header -->
+  <header
+    id="header"
+    class="bg-white border-b border-gray-200 sticky top-0 z-30"
+  >
+    <div class="flex items-center justify-between px-4 py-4">
+      <!-- Botón menú lateral -->
+      <button
+        class="p-2 mr-2 rounded hover:bg-gray-100"
+        aria-label="Abrir menú de navegación"
+        onclick="openSideMenu()"
+      >
+        <!-- Ícono hamburguesa simple -->
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <h1 class="text-xl flex-1">
+        <span id="brand-accent" class="text-green-600"> AssistGo </span>
+      </h1>
+    </div>
+  </header>
+
+  <!-- Overlay del menú -->
+  <div
+    id="side-menu-overlay"
+    class="fixed inset-0 bg-black/40 z-40 hidden"
+    onclick="closeSideMenu()"
+  ></div>
+
+  <!-- Menú lateral -->
+  <aside
+    id="side-menu"
+    class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 -translate-x-full transform transition-transform duration-200"
+    aria-label="Menú de navegación"
+  >
+    <div class="p-4 border-b">
+      <h2 class="text-lg font-semibold">Menú de navegación</h2>
+      <p class="text-sm text-gray-500">Seleccione una opción para navegar</p>
+    </div>
+
+    <nav class="p-4 space-y-6">
+      <!-- Inicio -->
+      <a
+        href="home.html"
+        class="flex items-center gap-3 text-gray-800 hover:text-green-600"
+        onclick="closeSideMenu()"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <use href="#icon-home" />
+        </svg>
+        <span>Inicio</span>
+      </a>
+
+      <!-- Ver mapa -->
+      <a
+        href="map2.html"
+        class="flex items-center gap-3 text-gray-800 hover:text-green-600"
+        onclick="closeSideMenu()"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <use href="#icon-map" />
+        </svg>
+        <span>Ver mapa</span>
+      </a>
+
+      <!-- Historial -->
+      <a
+        href="history.html"
+        class="flex items-center gap-3 text-gray-800 hover:text-green-600"
+        onclick="closeSideMenu()"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <use href="#icon-history" />
+        </svg>
+        <span>Historial</span>
+      </a>
+
+      <!-- Soporte -->
+      <a
+        href="support.html"
+        class="flex items-center gap-3 text-gray-800 hover:text-green-600"
+        onclick="closeSideMenu()"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <use href="#icon-support" />
+        </svg>
+        <span>Soporte</span>
+      </a>
+
+      <!-- Switch modo oscuro simple -->
+      <div class="flex items-center justify-between gap-3 text-gray-800">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <use href="#icon-settings" />
+          </svg>
+          <span>Modo oscuro</span>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="darkModeSwitch" class="sr-only peer" />
+          <div
+            class="w-10 h-5 bg-gray-300 rounded-full peer peer-checked:bg-green-500 transition-colors"
+          ></div>
+          <span
+            class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full shadow transform peer-checked:translate-x-5 transition-transform"
+          ></span>
+        </label>
+      </div>
+
+      <!-- Cerrar sesión -->
+      <button
+        type="button"
+        class="flex items-center gap-3 text-red-600 hover:text-red-700 w-full text-left"
+        onclick="logout(); closeSideMenu();"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <use href="#icon-logout" />
+        </svg>
+        <span>Cerrar sesión</span>
+      </button>
+
+    </nav>
+  </aside>
+
+
+  <main class="pb-24">
+    <section class="max-w-md mx-auto pt-8 px-4">
+      <h2 class="text-2xl font-semibold mb-4">
+        Solicitar un viaje accesible
+      </h2>
+      <p class="text-gray-600 mb-6">
+        Completa los datos para solicitar un vehículo con accesibilidad.
+      </p>
+      <div class="space-y-4">
+        <div>
+          <label class="block mb-1 text-sm font-medium">Origen</label>
+          <input
+            id="origin-input"
+            type="text"
+            class="w-full border border-gray-300 rounded px-3 py-2"
+            placeholder="Escribe tu ubicación actual"
+          />
+        </div>
+        <div>
+          <label class="block mb-1 text-sm font-medium">Destino</label>
+          <input
+            id="destination-input"
+            type="text"
+            class="w-full border border-gray-300 rounded px-3 py-2"
+            placeholder="¿A dónde vamos?"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================
+         ACCESOS RÁPIDOS
+         ====================== -->
+    <section class="max-w-md mx-auto pt-6 px-4 mb-10">
+      <h3 class="text-xl font-semibold mb-3">Accesos rápidos</h3>
+      <p class="text-gray-600 mb-4 text-sm">
+        Selecciona las opciones que necesitas para que el viaje se adapte a ti.
+      </p>
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Silla de ruedas -->
+        <button
+          type="button"
+          class="quick-action-btn bg-white border-2 border-gray-200 p-4 rounded-xl hover:border-green-500 hover:bg-green-50 transition flex flex-col items-center justify-center gap-2 min-h-[110px]"
+          data-action-id="wheelchair"
+        >
+          <svg class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+            <use href="#icon-wheelchair" />
+          </svg>
+          <span class="text-center text-sm">Silla de ruedas</span>
+        </button>
+
+        <!-- Vehículo con rampa -->
+        <button
+          type="button"
+          class="quick-action-btn bg-white border-2 border-gray-200 p-4 rounded-xl hover:border-green-500 hover:bg-green-50 transition flex flex-col items-center justify-center gap-2 min-h-[110px]"
+          data-action-id="ramp"
+        >
+          <svg class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+            <use href="#icon-truck" />
+          </svg>
+          <span class="text-center text-sm">Vehículo con rampa</span>
+        </button>
+
+        <!-- Asistencia para subir/bajar -->
+        <button
+          type="button"
+          class="quick-action-btn bg-white border-2 border-gray-200 p-4 rounded-xl hover:border-green-500 hover:bg-green-50 transition flex flex-col items-center justify-center gap-2 min-h-[110px]"
+          data-action-id="assistance"
+        >
+          <svg class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+            <use href="#icon-hand" />
+          </svg>
+          <span class="text-center text-sm">Asistencia para subir/bajar</span>
+        </button>
+
+        <!-- Espacio extra para acompañante -->
+        <button
+          type="button"
+          class="quick-action-btn bg-white border-2 border-gray-200 p-4 rounded-xl hover:border-green-500 hover:bg-green-50 transition flex flex-col items-center justify-center gap-2 min-h-[110px]"
+          data-action-id="companion"
+        >
+          <svg class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+            <use href="#icon-users" />
+          </svg>
+          <span class="text-center text-sm">Espacio extra para acompañante</span>
+        </button>
+      </div>
+
+      <!-- AQUÍ YA VA EL BOTÓN QUE LLAMA A goToMap() -->
+      <button
+        type="button"
+        class="w-full bg-green-600 text-white rounded py-2.5 text-base font-medium hover:bg-green-700 mt-6"
+        onclick="goToMap()"
+      >
+        Iniciar viaje
+      </button>
+    </section>
+  </main>
+
+
+
+  <!-- Bottom nav -->
+  <nav
+    id="bottom-nav"
+    class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200"
+  >
+    <div class="flex items-center justify-around py-2">
+      <a
+        href="home.html"
+        class="flex flex-col items-center gap-1 h-auto py-3 px-4 text-xs text-green-600"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <use href="#icon-home" />
+        </svg>
+        <span>Inicio</span>
+      </a>
+      <a
+        href="map2.html"
+        class="flex flex-col items-center gap-1 h-auto py-3 px-4 text-xs text-gray-600"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <use href="#icon-map" />
+        </svg>
+        <span>Mapa</span>
+      </a>
+      <a
+        href="history.html"
+        class="flex flex-col items-center gap-1 h-auto py-3 px-4 text-xs text-gray-600"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <use href="#icon-history" />
+        </svg>
+        <span>Historial</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- BOTÓN FLOTANTE "CONOCE TU APP" -->
+  <button
+    type="button"
+    class="fixed bottom-20 right-4 w-14 h-14 rounded-full bg-green-600 text-white shadow-lg flex items-center justify-center z-40 hover:bg-green-700"
+    aria-label="Conoce tu app"
+    onclick="openHelpModal()"
+  >
+    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+      <use href="#icon-book" />
+    </svg>
+  </button>
+
+  <!-- MODAL "CONOCE TU APP" -->
+  <div
+    id="help-modal-overlay"
+    class="fixed inset-0 bg-black/40 z-50 hidden"
+    onclick="closeHelpModal()"
+  >
+    <div
+      id="help-modal-panel"
+      class="modal-card max-w-md mx-auto mt-24 bg-white rounded-2xl shadow-lg p-6 relative"
+      onclick="event.stopPropagation()"
+    >
+      <div class="flex items-start justify-between gap-4 mb-3">
+        <div>
+          <h2 class="text-lg font-semibold">Conoce tu app</h2>
+          <p class="text-sm text-gray-600">
+            AssistGo adapta el viaje a tus necesidades. Aquí te explico qué hace
+            cada acceso rápido.
+          </p>
+        </div>
+        <button
+          type="button"
+          class="text-gray-500 hover:text-gray-700"
+          onclick="closeHelpModal()"
+          aria-label="Cerrar"
+        >
+          ✕
+        </button>
+      </div>
+
+      <ul class="space-y-3 text-sm">
+        <li class="flex gap-2">
+          <svg class="w-5 h-5 text-green-600 mt-0.5" viewBox="0 0 24 24" fill="currentColor">
+            <use href="#icon-wheelchair" />
+          </svg>
+          <p>
+            <strong>Silla de ruedas:</strong> indica que viajas con silla de
+            ruedas y necesitas espacio para subirla y transportarla de forma
+            segura.
+          </p>
+        </li>
+        <li class="flex gap-2">
+          <svg class="w-5 h-5 text-green-600 mt-0.5" viewBox="0 0 24 24" fill="currentColor">
+            <use href="#icon-truck" />
+          </svg>
+          <p>
+            <strong>Vehículo con rampa:</strong> solicita un vehículo con rampa
+            o acceso adaptado para subir y bajar sin transferirte.
+          </p>
+        </li>
+        <li class="flex gap-2">
+          <svg class="w-5 h-5 text-green-600 mt-0.5" viewBox="0 0 24 24" fill="currentColor">
+            <use href="#icon-hand" />
+          </svg>
+          <p>
+            <strong>Asistencia para subir/bajar:</strong> avisa al conductor que
+            necesitarás apoyo físico para entrar o salir del vehículo.
+          </p>
+        </li>
+        <li class="flex gap-2">
+          <svg class="w-5 h-5 text-green-600 mt-0.5" viewBox="0 0 24 24" fill="currentColor">
+            <use href="#icon-users" />
+          </svg>
+          <p>
+            <strong>Espacio extra para acompañante:</strong> reserva un lugar
+            para tu persona de apoyo o familiar.
+          </p>
+        </li>
+      </ul>
+
+      <p class="mt-4 text-sm text-gray-600">
+        Solo selecciona lo que necesites antes de iniciar el viaje y la app
+        buscará el conductor más adecuado para ti.
+      </p>
+
+      <div class="mt-4 flex justify-end">
+        <button
+          type="button"
+          class="px-4 py-2 rounded-lg bg-green-600 text-white text-sm font-medium hover:bg-green-700"
+          onclick="closeHelpModal()"
+        >
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SCRIPT PRINCIPAL ========== -->
+  <script>
+    // =============================
+    //  GOOGLE PLACES AUTOCOMPLETE
+    // =============================
+    let destinationAutocomplete = null;
+    let destinationPlaceData = {
+      placeId: null,
+      address: "",
+      location: null, // { lat, lng }
+    };
+
+    function initPlacesAutocomplete() {
+      const destinationInput = document.getElementById("destination-input");
+      if (!destinationInput || !window.google || !google.maps || !google.maps.places) {
+        console.warn("No se pudo inicializar Autocomplete (input o librería no disponible).");
+        return;
+      }
+
+      destinationAutocomplete = new google.maps.places.Autocomplete(
+        destinationInput,
+        {
+          fields: ["place_id", "formatted_address", "geometry"],
+          types: ["geocode"],
+        }
+      );
+
+      destinationAutocomplete.addListener("place_changed", () => {
+        const place = destinationAutocomplete.getPlace();
+        if (!place) return;
+
+        const placeId = place.place_id || "";
+        const address = place.formatted_address || destinationInput.value || "";
+        let location = null;
+
+        if (place.geometry && place.geometry.location) {
+          location = {
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+          };
+        }
+
+        destinationPlaceData.placeId = placeId;
+        destinationPlaceData.address = address;
+        destinationPlaceData.location = location;
+
+        localStorage.setItem("destination_place_id", placeId);
+        localStorage.setItem("destination_address", address);
+
+        if (location) {
+          localStorage.setItem("destination_location", JSON.stringify(location));
+        } else {
+          localStorage.removeItem("destination_location");
+        }
+
+        // compatibilidad con tu lógica actual
+        localStorage.setItem("destination", address);
+      });
+    }
+
+    // =============================
+    //  MODO OSCURO
+    // =============================
+    function toggleDarkMode() {
+      const body = document.body;
+      const enable = !body.classList.contains("dark-mode");
+
+      body.classList.toggle("dark-mode", enable);
+      localStorage.setItem("dark-mode", enable ? "on" : "off");
+
+      const switchEl = document.getElementById("darkModeSwitch");
+      if (switchEl) {
+        switchEl.checked = enable;
+      }
+    }
+
+    // =============================
+    //  IR AL MAPA (GUARDA ORIGEN + DESTINO)
+    // =============================
+    function goToMap() {
+      const originInput = document.getElementById("origin-input");
+      const destinationInput = document.getElementById("destination-input");
+
+      const originText = (originInput?.value || "").trim();
+      const destinationText = (destinationInput?.value || "").trim();
+
+      const citySuffix = ", Ciudad de México, México";
+
+      // ----- ORIGEN -----
+      let originAddress = originText;
+      if (originAddress && !originAddress.toLowerCase().includes("méxico")) {
+        originAddress += citySuffix;
+      }
+
+      localStorage.setItem("origin", originAddress);
+      localStorage.setItem("origin_address", originAddress);
+
+      if (originText) {
+        localStorage.removeItem("originLat");
+        localStorage.removeItem("originLng");
+      }
+
+      // ----- DESTINO -----
+      let finalDestinationAddress = destinationText;
+      let finalPlaceId = "";
+      let finalLocation = null;
+
+      if (destinationPlaceData.placeId && destinationPlaceData.address) {
+        // Usamos lo que venga de Autocomplete
+        finalPlaceId = destinationPlaceData.placeId;
+        finalDestinationAddress = destinationPlaceData.address;
+        finalLocation = destinationPlaceData.location;
+      } else {
+        // Escribió manualmente sin seleccionar Autocomplete
+        if (finalDestinationAddress && !finalDestinationAddress.toLowerCase().includes("méxico")) {
+          finalDestinationAddress += citySuffix;
+        }
+      }
+
+      localStorage.setItem("destination_address", finalDestinationAddress);
+      localStorage.setItem("destination", finalDestinationAddress);
+      localStorage.setItem("destination_place_id", finalPlaceId);
+
+      if (finalLocation) {
+        localStorage.setItem("destination_location", JSON.stringify(finalLocation));
+      } else {
+        localStorage.removeItem("destination_location");
+      }
+
+      window.location.href = "map2.html";
+    }
+
+    // =============================
+    //  MODAL DE AYUDA
+    // =============================
+    function openHelpModal() {
+      const overlay = document.getElementById("help-modal-overlay");
+      if (overlay) overlay.classList.remove("hidden");
+    }
+
+    function closeHelpModal() {
+      const overlay = document.getElementById("help-modal-overlay");
+      if (overlay) overlay.classList.add("hidden");
+    }
+
+    // =============================
+    //  AUTENTICACIÓN
+    // =============================
+    function logout() {
+      localStorage.removeItem("isAuthenticated");
+      window.location.href = "index.html";
+    }
+
+    // =============================
+    //  ALTO CONTRASTE
+    // =============================
+    function toggleHighContrast() {
+      toggleDarkMode();
+    }
+
+    // =============================
+    //  MENÚ LATERAL
+    // =============================
+    function openSideMenu() {
+      const menu = document.getElementById("side-menu");
+      const overlay = document.getElementById("side-menu-overlay");
+      if (!menu || !overlay) return;
+      menu.classList.remove("-translate-x-full");
+      overlay.classList.remove("hidden");
+    }
+  
+    function closeSideMenu() {
+      const menu = document.getElementById("side-menu");
+      const overlay = document.getElementById("side-menu-overlay");
+      if (!menu || !overlay) return;
+      menu.classList.add("-translate-x-full");
+      overlay.classList.add("hidden");
+    }
+
+    // =============================
+    //  INICIALIZACIÓN GENERAL
+    // =============================
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("isAuthenticated") !== "true") {
+        window.location.href = "index.html";
+        return;
+      }
+
+      const isDark = localStorage.getItem("dark-mode") === "on";
+      if (isDark) {
+        document.body.classList.add("dark-mode");
+      }
+
+      const switchEl = document.getElementById("darkModeSwitch");
+      if (switchEl) {
+        switchEl.checked = isDark;
+        switchEl.addEventListener("change", () => {
+          toggleDarkMode();
+        });
+      }
+
+      const quickButtons = document.querySelectorAll(".quick-action-btn");
+      const saved = localStorage.getItem("selected-accessibility");
+
+      if (saved) {
+        const selectedBtn = document.querySelector(
+          `[data-action-id="${saved}"]`
+        );
+        if (selectedBtn) {
+          selectedBtn.classList.add("quick-action-selected");
+        }
+      }
+
+      quickButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          quickButtons.forEach((b) =>
+            b.classList.remove("quick-action-selected")
+          );
+          btn.classList.add("quick-action-selected");
+          localStorage.setItem("selected-accessibility", btn.dataset.actionId);
+        });
+      });
+    });
+  </script>
+
+  <!-- ========== GOOGLE MAPS + PLACES ========== -->
+  <!-- Cambia TU_API_KEY_AQUI por tu API key real -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQpjYmHvEcnun3AZG5vflKGImyOFpSse8&libraries=places&callback=initPlacesAutocomplete"
+    async
+    defer
+  ></script>
+  
+</body>
+</html>
